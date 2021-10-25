@@ -6,10 +6,20 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  buildDataset:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+      with:
+        ref: data
+    - name: Copy data temp to directory
+      run: |
+        mkdir /tmp/res
+        cp -r data /tmp/res
+    - uses: actions/checkout@v2
+    - name: Copy data from temp to working branch
+      run: |
+        cp -r /tmp/res/data .
     - name: Use Node.js with yarn
       uses: actions/setup-node@v2
       with:
@@ -24,15 +34,14 @@ jobs:
         GOOGLE_SHEET_ID: ${{ secrets.GOOGLE_SHEET_ID }}
         GOOGLE_GEO_SHEET_ID: ${{secrets.GOOGLE_GEO_SHEET_ID }}
       run: yarn build
-    - name: Prepare Results
+    - name: Copy results to temporary directory
       run: |
-        mkdir /tmp/res
         cp -r data /tmp/res
     - uses: actions/checkout@v2
       with:
         ref: data
     - run: |
-        echo "* $(date) DATA_SET" >> update.log
+        echo "* $(date) BUILD_DATA_SET" >> update.log
         cp -r /tmp/res/data .
         git config user.name updater-bot
         git config user.email github-actions@github.com

@@ -10,71 +10,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Use Node.js with yarn
-      uses: actions/setup-node@v2
       with:
-        node-version: 12.x
-        cache: 'yarn'
-    - name: Install dependencies
-      run: yarn install
-    - name: Scrape Dataset
-      run: yarn scrape
-    - name: Prepare Scraped Results
+        ref: data
+    - name: Copy data temp to directory
       run: |
         mkdir /tmp/res
         cp -r data /tmp/res
     - uses: actions/checkout@v2
-      with:
-        ref: data
-    - run: |
-        echo "* $(date)" >> update.log
-        cp -r /tmp/res/data .
-        git config user.name updater-bot
-        git config user.email github-actions@github.com
-        git add .
-        git commit -m "updater-bot ${date}"
-        git push
-  runOcrForDgi:
-    runs-on: ubuntu-latest
-    needs: downloadDataset
-    steps:
-    - uses: actions/checkout@v2
-    - name: Prepare Script
+    - name: Copy data from temp to working branch
       run: |
-        sudo apt-get install -y jq
-        sudo apt-get install -y tesseract-ocr
-        cp ./scripts/ocr_dgi.sh /tmp/ocr_dgi.sh
-    - uses: actions/checkout@v2
-      with:
-        ref: data
-    - name: Run Script
-      run: |
-        cp /tmp/ocr_dgi.sh ./data/ocr_dgi.sh
-        chmod +x ./data/ocr_dgi.sh
-        cd data
-        ./ocr_dgi.sh
-        cd ..
-        rm ./data/ocr_dgi.sh
-    - run: |
-        echo "* $(date) AUTO_OCR" >> update.log
-        git config user.name updater-bot
-        git config user.email github-actions@github.com
-        git add .
-        git commit -m "updater-bot ${date}"
-        git push
-  postScrape:
-    runs-on: ubuntu-latest
-    needs: runOcrForDgi
-    steps:
-    - uses: actions/checkout@v2
-      with:
-        ref: data
-    - name: Recall Scraped Results
-      run: |
-        mkdir /tmp/res
-        cp -r data /tmp/res
-    - uses: actions/checkout@v2
-    - run: |
         cp -r /tmp/res/data .
     - name: Use Node.js with yarn
       uses: actions/setup-node@v2
@@ -84,15 +28,15 @@ jobs:
     - name: Install dependencies
       run: yarn install
     - name: Parse Dataset
-      run: yarn scrape_dgi_post
-    - name: Prepare Scraped Results
+      run: yarn scrape
+    - name: Copy results to temporary directory
       run: |
         cp -r data /tmp/res
     - uses: actions/checkout@v2
       with:
         ref: data
     - run: |
-        echo "* $(date) POST_SCRAPE" >> update.log
+        echo "* $(date) SCRAPE_DATA_SET" >> update.log
         cp -r /tmp/res/data .
         git config user.name updater-bot
         git config user.email github-actions@github.com
