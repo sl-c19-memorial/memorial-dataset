@@ -6,8 +6,8 @@ This repository contains software for compiling and aiding documentation of vict
 
 | Name | Type | Latest URL |
 | --- | --- | --- |
-| COVID-19 Deaths Dataset | Manually Processed | [TSV](https://github.com/sl-c19-memorial/memorial-dataset/blob/data/data/covid19_deaths_latest.tsv), [JSON](https://github.com/sl-c19-memorial/memorial-dataset/blob/data/data/covid19_deaths_latest.json)
-| Geo Daataset | Manually Processed | [JSON](https://raw.githubusercontent.com/kaveenr/covid19-memorial-lk-data/data/data/geo_processed_latest.json)
+| COVID-19 Deaths Dataset | Manually Processed | [JSON](https://raw.githubusercontent.com/sl-c19-memorial/memorial-dataset/blob/data/data/covid19_deaths_latest.json)
+| Geo Dataset | Manually Processed | [JSON](https://raw.githubusercontent.com/kaveenr/sl-c19-memorial/memorial-dataset/blob/data/data/geo_processed_latest.json)
 
 ## Local Setup
 Pre-requisites
@@ -26,6 +26,7 @@ These environment variables should be set for full functionality.
 GOOGLE_SERVICE_ACCOUNT_EMAIL=<saccount>
 GOOGLE_PRIVATE_KEY=<pkey>
 GOOGLE_SHEET_ID=<sheedId>
+GOOGLE_GEO_SHEET_ID=<geoSheetId>
 ```
 ## Licence
 

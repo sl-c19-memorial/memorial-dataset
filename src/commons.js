@@ -1,5 +1,4 @@
 const fs = require('fs');
-const tsv = require('tsv');
 const moment = require('moment');
 
 function getFileTimestamp(){
@@ -14,9 +13,6 @@ function saveDataSource(name, obj, saveTsv = true) {
         const jsonString = JSON.stringify(obj, null, 4);
         fs.writeFileSync(`data/historical/${name}_${timestamp}.json`, jsonString);
         fs.writeFileSync(`data/${name}_latest.json`, jsonString);
-        if (saveTsv) {
-            fs.writeFileSync(`data/${name}_latest.tsv`, tsv.stringify(obj));
-        }
     } catch (e) {
         throw new Error("Failed Saving Files " + e);
     }

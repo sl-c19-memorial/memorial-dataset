@@ -8,15 +8,14 @@
     "axios": "^0.21.1",
     "dotenv": "^10.0.0",
     "google-spreadsheet": "^3.1.15",
-    "md5": "^2.3.0",
-    "moment": "^2.29.1",
-    "tsv": "^0.2.0",
-    "x-ray": "^2.3.4"
+    "moment": "^2.29.1"
   },
   "scripts": {
     "scrape_jk": "node ./src/jh_user_keys.js",
     "scrape": "npm-run-all scrape_jk",
-    "build": "node ./src/build_dataset.js"
+    "build_dataset": "node ./src/build_dataset.js",
+    "build_geo": "node ./src/buid_geo_dataset.js",
+    "build": "npm-run-all build_dataset build_geo"
   },
   "devDependencies": {
     "npm-run-all": "^4.1.5"
