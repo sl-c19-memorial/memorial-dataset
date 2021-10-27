@@ -6,8 +6,8 @@ This repository contains software for compiling and aiding documentation of vict
 
 | Name | Type | Latest URL |
 | --- | --- | --- |
-| COVID-19 Deaths Dataset | Manually Processed | [JSON](https://raw.githubusercontent.com/sl-c19-memorial/memorial-dataset/blob/data/data/covid19_deaths_latest.json)
-| Geo Dataset | Manually Processed | [JSON](https://raw.githubusercontent.com/kaveenr/sl-c19-memorial/memorial-dataset/blob/data/data/geo_processed_latest.json)
+| COVID-19 Deaths Dataset | Manually Processed | [JSON](https://raw.githubusercontent.com/sl-c19-memorial/memorial-dataset/data/data/covid19_deaths_latest.json)
+| Geo Dataset | Manually Processed | [JSON](https://github.com/sl-c19-memorial/memorial-dataset/blob/data/data/geo_processed_latest.json)
 
 ## Local Setup
 Pre-requisites
