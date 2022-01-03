@@ -12,6 +12,9 @@ jobs:
     - uses: actions/checkout@v2
       with:
         ref: data
+    - name: Install dependencies
+      run: |
+        sudo apt-get install -y imagemagick
     - name: Copy data temp to directory
       run: |
         mkdir /tmp/res

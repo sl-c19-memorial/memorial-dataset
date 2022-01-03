@@ -2,10 +2,25 @@ require('dotenv').config();
 
 const { GoogleSpreadsheet } = require('google-spreadsheet');
 const moment = require('moment');
-const { saveDataSource } = require('./commons');
+const { saveDataSource, getAuth, downloadFile, resizeImage } = require('./commons');
+const auth = getAuth();
 
-function mapItem(row) {
+async function mapItem(row) {
     try {
+        var detail = null
+        if (row.SourceType == "VERIFIED_SUBMISSION") {
+            photo = null
+            if (row.PhotoFile) {
+                file = await downloadFile(auth, row.PhotoFile, row.IndexKey)
+                photo = await resizeImage(file, row.IndexKey)
+            }
+            detail = {
+                name: row.Name.trim(),
+                occupation: row.Occupation.trim(),
+                description: row.DetailText.trim(),
+                photo: photo
+            }
+        }
         return ({
             indexKey: row.IndexKey, 
             deathDate: moment(row.DeathDate,"YYYY/MM/DD").utcOffset(330).toISOString(true),
@@ -18,7 +33,8 @@ function mapItem(row) {
             deathPlace: row.DeathPlace,
             incarcerated: row.incarcerated ? row.incarcerated === "Y" : false,
             sourceType: row.SourceType,
-            sourceRef: row.SourceRef
+            sourceRef: row.SourceRef,
+            detail: detail
         });
     } catch (e) {
         throw Error(`Unable to parse row ${row.IndexKey} reason ${e.toString()}`)
@@ -41,9 +57,9 @@ async function scrapeData() {
     console.log(`Loaded ${masterRows.length} rows`);
 
     const dataSet = [];
-    masterRows.filter((row) => row.Province).forEach((row) => {
-        dataSet.push(mapItem(row));
-    });
+    for (row of masterRows.filter((row) => row.Province)){
+        dataSet.push(await mapItem(row));
+    }
     console.log(`Complied ${dataSet.length} items for saving`);
     
     saveDataSource("covid19_deaths", dataSet);
