@@ -15,9 +15,9 @@ async function mapItem(row) {
                 photo = await resizeImage(file, row.IndexKey)
             }
             detail = {
-                name: row.Name.trim(),
-                occupation: row.Occupation.trim(),
-                description: row.DetailText.trim(),
+                name: row.Name.trim() || null,
+                occupation: row.Occupation.trim() || null,
+                description: row.DetailText.trim() || null,
                 photo: photo
             }
         }
