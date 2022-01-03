@@ -8333,7 +8333,7 @@
         "detail": {
             "name": "D.G.A. Kasun Sameera",
             "occupation": "Astrologer",
-            "description": "",
+            "description": null,
             "photo": "https://raw.githubusercontent.com/sl-c19-memorial/memorial-dataset/data/data/static/2021-04-30-0008.jpg"
         }
     },
@@ -9672,7 +9672,7 @@
         "sourceRef": "6E66AD",
         "detail": {
             "name": "Randy",
-            "occupation": "",
+            "occupation": null,
             "description": "Randy was a gem. He was essentially a good person, dutiful, talented, hard working and disciplined. He had a zest for life and the future. Into gadgets and tech. A unique problem solver, he is dearly missed in all the communities he was a part of.",
             "photo": "https://raw.githubusercontent.com/sl-c19-memorial/memorial-dataset/data/data/static/2021-05-13-0009.jpg"
         }
@@ -11445,7 +11445,7 @@
         "sourceRef": "5E4D46",
         "detail": {
             "name": "S. Esawathie",
-            "occupation": "",
+            "occupation": null,
             "description": "Where ever you are, You will always be in our hearts ❤️",
             "photo": "https://raw.githubusercontent.com/sl-c19-memorial/memorial-dataset/data/data/static/2021-07-02-0001.jpg"
         }
@@ -11466,7 +11466,7 @@
         "detail": {
             "name": "Zubaidha Jameel Mohamed",
             "occupation": "Housewife",
-            "description": "",
+            "description": null,
             "photo": null
         }
     },
@@ -11484,7 +11484,7 @@
         "sourceType": "VERIFIED_SUBMISSION",
         "sourceRef": "BA3771",
         "detail": {
-            "name": "",
+            "name": null,
             "occupation": "Housewife",
             "description": "A loving and caring mother",
             "photo": "https://raw.githubusercontent.com/sl-c19-memorial/memorial-dataset/data/data/static/2021-08-17-0001.jpg"
@@ -11506,7 +11506,7 @@
         "detail": {
             "name": "Thrimanna Hettige Eugina Perera",
             "occupation": "Housewife",
-            "description": "",
+            "description": null,
             "photo": "https://raw.githubusercontent.com/sl-c19-memorial/memorial-dataset/data/data/static/2021-08-26-0002.jpg"
         }
     }
